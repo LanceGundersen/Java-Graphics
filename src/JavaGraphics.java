@@ -46,7 +46,7 @@ public class JavaGraphics extends JPanel {
         Timer animationTimer;
 
         animationTimer = new Timer(1600, arg0 -> {
-            if (panel.frameNumber > 4) {
+            if (panel.frameNumber > 6) {
                 panel.frameNumber = 0;
             } else {
                 panel.frameNumber++;
@@ -77,47 +77,51 @@ public class JavaGraphics extends JPanel {
         AffineTransform savedTransform = g2.getTransform();
 
         switch (frameNumber) {
-            case 1:
+            case 0:
                 translateX = 0;
                 translateY = 0;
                 scaleX = 1.0;
                 scaleY = 1.0;
                 rotation = 0;
                 break;
+            case 1:
+                translateX += -5;
+                break;
             case 2:
-                translateX = -5;
-                translateY = 7;
+                translateY += 7;
                 break;
             case 3:
-                rotation = 45 * Math.PI / 180.0;
+                rotation += 45 * Math.PI / 180.0;
                 break;
             case 4:
-                rotation = -90 * Math.PI / 180.0;
+                rotation += -90 * Math.PI / 180.0;
                 break;
             case 5:
                 scaleX = 2.0;
-                scaleY = .5;
                 break;
-            default:
+            case 6:
+                scaleY = 0.5;
                 break;
         }
 
         g2.translate(translateX, translateY);
         g2.rotate(rotation);
         g2.scale(scaleX, scaleY);
-        g2.drawImage(arrowImage, -10, 0, this);
+        g2.drawImage(arrowImage, 0, 0, this);
         g2.setTransform(savedTransform);
 
         g2.translate(translateX, translateY);
+        g2.translate(-50, -25);
         g2.rotate(rotation);
         g2.scale(scaleX, scaleY);
-        g2.drawImage(thumbImage, -30, -30, this);
+        g2.drawImage(thumbImage, 0, 0, this);
         g2.setTransform(savedTransform);
 
         g2.translate(translateX, translateY);
+        g2.translate(50, 25);
         g2.rotate(rotation);
         g2.scale(scaleX, scaleY);
-        g2.drawImage(cupImage, 10, 30, this);
+        g2.drawImage(cupImage, 0, 0, this);
         g2.setTransform(savedTransform);
     }
 
